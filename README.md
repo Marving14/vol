@@ -45,5 +45,29 @@ The function is tested with various scenarios, including:
 
 The results from these test cases confirm the function's accuracy and reliability.
 
-## Conclusion
-The updated `calculate_ttc_with_acceleration` function offers a precise and reliable method for estimating the time to collision between two vehicles under uniform acceleration. This enhanced function is crucial for applications such as autonomous driving systems and collision avoidance technologies.
+
+
+# Vehicle Position Visualization Documentation
+
+## Overview
+Overview of the Python script used to visualize vehicle positions and their bounding boxes in a bird's eye view. The script reads vehicle detection data from a CSV file and calculates bounding boxes based on each vehicle's heading, width, and length. These bounding boxes are then visualized on a plot to represent the vehicles' positions on the road.
+
+## Data Source
+The vehicle position data is sourced from a CSV file named "vehicle_data.csv". The file contains the following columns:
+- `Timestamp`: The time at which the vehicle's position was recorded.
+- `Vehicle_ID`: A unique identifier for each vehicle.
+- `Lateral_Position`: The lateral position of the vehicle on the road.
+- `Longitudinal_Position`: The longitudinal position of the vehicle on the road.
+- `Heading`: The orientation of the vehicle in degrees.
+- `Width`: The width of the vehicle.
+- `Length`: The length of the vehicle.
+
+## Calculation of Bounding Boxes
+Bounding boxes are calculated using the `calculate_bounding_box` function, which takes the vehicle's position, size, and heading to compute the corners of the bounding box. The corners are then rotated based on the vehicle's heading to align with the vehicle's orientation.
+
+## Visualization
+The script generates a plot with each vehicle represented by a bounding box. The plot is scaled to include all vehicles in the dataset and is set to an equal aspect ratio to maintain the correct proportions. The vehicles are plotted with a blue outline by default.
+
+## Usage
+To run the script, ensure that the CSV file is located in the specified directory and execute the script. The resulting plot will be displayed, and an image file named "vehicle_positions.png" will be saved with a resolution of 300 DPI.
+
