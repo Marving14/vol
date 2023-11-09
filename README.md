@@ -71,3 +71,34 @@ The script generates a plot with each vehicle represented by a bounding box. The
 ## Usage
 To run the script, ensure that the CSV file is located in the specified directory and execute the script. The resulting plot will be displayed, and an image file named "vehicle_positions.png" will be saved with a resolution of 300 DPI.
 
+## The computation of bounding boxes for each vehicle is based on the vehicle's position, size, and orientation data provided in the CSV file. Here's a step-by-step explanation of the process:
+
+### Computing Bounding Boxes
+- Center Position: The Lateral_Position and Longitudinal_Position fields from the dataset provide the center point of each vehicle.
+
+- Vehicle Dimensions: The Width and Length fields define the size of the vehicle.
+
+- Orientation: The Heading field gives the orientation of the vehicle in degrees, which is the angle from the longitudinal axis of the road.
+
+- Rectangle Corners: Before rotation, the corners of the bounding box are calculated relative to the center position, assuming the vehicle is aligned with the axes.
+
+- Rotation: The corners are then rotated around the center point by the heading angle to align with the vehicle's actual orientation. This is done using standard 2D rotation matrix transformations.
+
+- Rotation Matrix: The rotation matrix is defined as:
+
+    [ cos(θ)   - sin(θ)  ] 
+   \
+    [ sin(θ)    cos(θ)    ]
+
+where 
+�
+θ is the heading angle converted to radians.
+
+- Applying Rotation: Each corner point is multiplied by the rotation matrix to get the rotated coordinates.
+
+- Storing Bounding Boxes: The rotated corners are stored as a list of tuples representing the bounding box for each vehicle.
+### Why This Approach?
+This approach is chosen for its mathematical precision in representing the vehicles' positions and orientations. The use of rotation matrices is a standard technique for handling rotations in two dimensions, which is crucial for accurately depicting the vehicles' headings. 
+
+
+
